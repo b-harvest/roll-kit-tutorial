@@ -1,2 +1,3 @@
-# roll-kit-tutorial
-Celestia Roll-kit tutorial
+# Simapp
+
+This repository is a template for new Cosmos SDK applications.
