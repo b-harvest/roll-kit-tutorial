@@ -1,6 +1,8 @@
 syntax = "proto3";
 package simapp.amm.v1beta1;
 
+import "cosmos/msg/v1/msg.proto";
+
 option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
 
-service Msg {}
+service Msg { option (cosmos.msg.v1.service) = true; }

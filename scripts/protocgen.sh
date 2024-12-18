@@ -29,6 +29,6 @@ cd ..
 cp -r github.com/b-harvest/roll-kit-tutorial/* ./
 rm -rf github.com
 
-go mod tidy
+#go mod tidy
 
 ./scripts/protocgen-pulsar.sh

@@ -17,5 +17,5 @@ service Query {
 message QueryParamsRequest {}
 
 message QueryParamsResponse {
-  Params params = 1 [(gogoproto.nullable) = false];
+  Params params = 1 [ (gogoproto.nullable) = false ];
 }

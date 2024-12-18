@@ -5,6 +5,4 @@ import "gogoproto/gogo.proto";
 
 option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
 
-message Params {
-  option (gogoproto.goproto_stringer) = false;
-}
+message Params { option (gogoproto.goproto_stringer) = false; }
