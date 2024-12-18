@@ -1,0 +1,10 @@
+syntax = "proto3";
+package simapp.amm.v1beta1;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
+
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+}
