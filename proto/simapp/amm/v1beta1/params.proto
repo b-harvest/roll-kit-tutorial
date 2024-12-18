@@ -2,7 +2,23 @@ syntax = "proto3";
 package simapp.amm.v1beta1;
 
 import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
+import "amino/amino.proto";
 
 option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
 
-message Params { option (gogoproto.goproto_stringer) = false; }
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  string fee_rate = 1 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (amino.dont_omitempty) = true,
+    (gogoproto.nullable) = false
+  ];
+
+  string min_initial_liquidity = 2 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (amino.dont_omitempty) = true,
+    (gogoproto.nullable) = false
+  ];
+}

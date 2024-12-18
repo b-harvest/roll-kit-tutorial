@@ -2,7 +2,9 @@
 package ammv1beta1
 
 import (
+	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -14,12 +16,16 @@ import (
 )
 
 var (
-	md_Params protoreflect.MessageDescriptor
+	md_Params                       protoreflect.MessageDescriptor
+	fd_Params_fee_rate              protoreflect.FieldDescriptor
+	fd_Params_min_initial_liquidity protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_simapp_amm_v1beta1_params_proto_init()
 	md_Params = File_simapp_amm_v1beta1_params_proto.Messages().ByName("Params")
+	fd_Params_fee_rate = md_Params.Fields().ByName("fee_rate")
+	fd_Params_min_initial_liquidity = md_Params.Fields().ByName("min_initial_liquidity")
 }
 
 var _ protoreflect.Message = (*fastReflection_Params)(nil)
@@ -87,6 +93,18 @@ func (x *fastReflection_Params) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_Params) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.FeeRate != "" {
+		value := protoreflect.ValueOfString(x.FeeRate)
+		if !f(fd_Params_fee_rate, value) {
+			return
+		}
+	}
+	if x.MinInitialLiquidity != "" {
+		value := protoreflect.ValueOfString(x.MinInitialLiquidity)
+		if !f(fd_Params_min_initial_liquidity, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -102,6 +120,10 @@ func (x *fastReflection_Params) Range(f func(protoreflect.FieldDescriptor, proto
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		return x.FeeRate != ""
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		return x.MinInitialLiquidity != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -118,6 +140,10 @@ func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		x.FeeRate = ""
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		x.MinInitialLiquidity = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -134,6 +160,12 @@ func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		value := x.FeeRate
+		return protoreflect.ValueOfString(value)
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		value := x.MinInitialLiquidity
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -154,6 +186,10 @@ func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) pro
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		x.FeeRate = value.Interface().(string)
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		x.MinInitialLiquidity = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -174,6 +210,10 @@ func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value proto
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		panic(fmt.Errorf("field fee_rate of message simapp.amm.v1beta1.Params is not mutable"))
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		panic(fmt.Errorf("field min_initial_liquidity of message simapp.amm.v1beta1.Params is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -187,6 +227,10 @@ func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protore
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_Params) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "simapp.amm.v1beta1.Params.fee_rate":
+		return protoreflect.ValueOfString("")
+	case "simapp.amm.v1beta1.Params.min_initial_liquidity":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.Params"))
@@ -256,6 +300,14 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
+		l = len(x.FeeRate)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.MinInitialLiquidity)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -284,6 +336,20 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.MinInitialLiquidity) > 0 {
+			i -= len(x.MinInitialLiquidity)
+			copy(dAtA[i:], x.MinInitialLiquidity)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MinInitialLiquidity)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.FeeRate) > 0 {
+			i -= len(x.FeeRate)
+			copy(dAtA[i:], x.FeeRate)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.FeeRate)))
+			i--
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -334,6 +400,70 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: Params: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field FeeRate", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.FeeRate = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MinInitialLiquidity", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.MinInitialLiquidity = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -386,6 +516,9 @@ type Params struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	FeeRate             string `protobuf:"bytes,1,opt,name=fee_rate,json=feeRate,proto3" json:"fee_rate,omitempty"`
+	MinInitialLiquidity string `protobuf:"bytes,2,opt,name=min_initial_liquidity,json=minInitialLiquidity,proto3" json:"min_initial_liquidity,omitempty"`
 }
 
 func (x *Params) Reset() {
@@ -408,6 +541,20 @@ func (*Params) Descriptor() ([]byte, []int) {
 	return file_simapp_amm_v1beta1_params_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *Params) GetFeeRate() string {
+	if x != nil {
+		return x.FeeRate
+	}
+	return ""
+}
+
+func (x *Params) GetMinInitialLiquidity() string {
+	if x != nil {
+		return x.MinInitialLiquidity
+	}
+	return ""
+}
+
 var File_simapp_amm_v1beta1_params_proto protoreflect.FileDescriptor
 
 var file_simapp_amm_v1beta1_params_proto_rawDesc = []byte{
@@ -415,21 +562,34 @@ var file_simapp_amm_v1beta1_params_proto_rawDesc = []byte{
 	0x65, 0x74, 0x61, 0x31, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x12, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31,
 	0x62, 0x65, 0x74, 0x61, 0x31, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x0e, 0x0a, 0x06, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x04, 0x98, 0xa0, 0x1f, 0x00, 0x42, 0xbf, 0x01, 0x0a, 0x16,
-	0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42, 0x0b, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
-	0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2f, 0x61,
-	0x6d, 0x6d, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x61, 0x6d, 0x6d, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02, 0x03, 0x53, 0x41, 0x58, 0xaa, 0x02, 0x12, 0x53, 0x69,
-	0x6d, 0x61, 0x70, 0x70, 0x2e, 0x41, 0x6d, 0x6d, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0xca, 0x02, 0x12, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x5c, 0x41, 0x6d, 0x6d, 0x5c, 0x56, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0xe2, 0x02, 0x1e, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x5c, 0x41,
-	0x6d, 0x6d, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x14, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x3a,
-	0x3a, 0x41, 0x6d, 0x6d, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d,
+	0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb9, 0x01, 0x0a, 0x06, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x12, 0x51, 0x0a, 0x08, 0x66, 0x65, 0x65, 0x5f, 0x72, 0x61, 0x74, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x1b,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74,
+	0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x07,
+	0x66, 0x65, 0x65, 0x52, 0x61, 0x74, 0x65, 0x12, 0x56, 0x0a, 0x15, 0x6d, 0x69, 0x6e, 0x5f, 0x69,
+	0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x5f, 0x6c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x22, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74,
+	0x68, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x13, 0x6d, 0x69, 0x6e, 0x49,
+	0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x3a,
+	0x04, 0x98, 0xa0, 0x1f, 0x00, 0x42, 0xbf, 0x01, 0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69,
+	0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
+	0x42, 0x0b, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2f, 0x61, 0x6d, 0x6d, 0x2f, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x3b, 0x61, 0x6d, 0x6d, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2,
+	0x02, 0x03, 0x53, 0x41, 0x58, 0xaa, 0x02, 0x12, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x41,
+	0x6d, 0x6d, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x12, 0x53, 0x69, 0x6d,
+	0x61, 0x70, 0x70, 0x5c, 0x41, 0x6d, 0x6d, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xe2,
+	0x02, 0x1e, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x5c, 0x41, 0x6d, 0x6d, 0x5c, 0x56, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0xea, 0x02, 0x14, 0x53, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x3a, 0x3a, 0x41, 0x6d, 0x6d, 0x3a, 0x3a,
+	0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
