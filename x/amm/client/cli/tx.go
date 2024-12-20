@@ -26,6 +26,7 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(
 		GetAddLiquidityCmd(),
 		GetRemovedLiquidityCmd(),
+		GetSwapExactInCmd(),
 	)
 
 	return cmd
@@ -73,6 +74,36 @@ func GetRemovedLiquidityCmd() *cobra.Command {
 				return fmt.Errorf("invalid share: %w", err)
 			}
 			msg := types.NewMsgRemoveLiquidity(clientCtx.GetFromAddress(), share)
+
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+func GetSwapExactInCmd() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "swap-exact-in [coin-in] [min-coin-out]",
+		Args:  cobra.ExactArgs(2),
+		Short: "Swap exact amount of input coin for output coin.",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+
+			coinIn, err := sdk.ParseCoinNormalized(args[0])
+			if err != nil {
+				return fmt.Errorf("invalid coin in: %w", err)
+			}
+			minCoinOut, err := sdk.ParseCoinNormalized(args[1])
+			if err != nil {
+				return fmt.Errorf("invalid min coin out: %w", err)
+			}
+			msg := types.NewMsgSwapExactIn(clientCtx.GetFromAddress(), coinIn, minCoinOut)
 
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
 		},

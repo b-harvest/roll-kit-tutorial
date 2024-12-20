@@ -15,3 +15,11 @@ func NewMsgRemoveLiquidity(sender sdk.AccAddress, share sdk.Coin) *MsgRemoveLiqu
 		Share:  share,
 	}
 }
+
+func NewMsgSwapExactIn(sender sdk.AccAddress, coinIn, minCoinOut sdk.Coin) *MsgSwapExactIn {
+	return &MsgSwapExactIn{
+		Sender:     sender.String(),
+		CoinIn:     coinIn,
+		MinCoinOut: minCoinOut,
+	}
+}
