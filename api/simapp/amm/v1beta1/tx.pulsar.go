@@ -2,6 +2,7 @@
 package ammv1beta1
 
 import (
+	_ "cosmossdk.io/api/amino"
 	v1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
 	_ "cosmossdk.io/api/cosmos/msg/v1"
 	fmt "fmt"
@@ -3015,6 +3016,1019 @@ func (x *fastReflection_MsgSwapExactInResponse) ProtoMethods() *protoiface.Metho
 	}
 }
 
+var (
+	md_MsgSwapExactOut             protoreflect.MessageDescriptor
+	fd_MsgSwapExactOut_sender      protoreflect.FieldDescriptor
+	fd_MsgSwapExactOut_coin_out    protoreflect.FieldDescriptor
+	fd_MsgSwapExactOut_max_coin_in protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_simapp_amm_v1beta1_tx_proto_init()
+	md_MsgSwapExactOut = File_simapp_amm_v1beta1_tx_proto.Messages().ByName("MsgSwapExactOut")
+	fd_MsgSwapExactOut_sender = md_MsgSwapExactOut.Fields().ByName("sender")
+	fd_MsgSwapExactOut_coin_out = md_MsgSwapExactOut.Fields().ByName("coin_out")
+	fd_MsgSwapExactOut_max_coin_in = md_MsgSwapExactOut.Fields().ByName("max_coin_in")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgSwapExactOut)(nil)
+
+type fastReflection_MsgSwapExactOut MsgSwapExactOut
+
+func (x *MsgSwapExactOut) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgSwapExactOut)(x)
+}
+
+func (x *MsgSwapExactOut) slowProtoReflect() protoreflect.Message {
+	mi := &file_simapp_amm_v1beta1_tx_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgSwapExactOut_messageType fastReflection_MsgSwapExactOut_messageType
+var _ protoreflect.MessageType = fastReflection_MsgSwapExactOut_messageType{}
+
+type fastReflection_MsgSwapExactOut_messageType struct{}
+
+func (x fastReflection_MsgSwapExactOut_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgSwapExactOut)(nil)
+}
+func (x fastReflection_MsgSwapExactOut_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgSwapExactOut)
+}
+func (x fastReflection_MsgSwapExactOut_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSwapExactOut
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgSwapExactOut) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSwapExactOut
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgSwapExactOut) Type() protoreflect.MessageType {
+	return _fastReflection_MsgSwapExactOut_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgSwapExactOut) New() protoreflect.Message {
+	return new(fastReflection_MsgSwapExactOut)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgSwapExactOut) Interface() protoreflect.ProtoMessage {
+	return (*MsgSwapExactOut)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgSwapExactOut) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Sender != "" {
+		value := protoreflect.ValueOfString(x.Sender)
+		if !f(fd_MsgSwapExactOut_sender, value) {
+			return
+		}
+	}
+	if x.CoinOut != nil {
+		value := protoreflect.ValueOfMessage(x.CoinOut.ProtoReflect())
+		if !f(fd_MsgSwapExactOut_coin_out, value) {
+			return
+		}
+	}
+	if x.MaxCoinIn != nil {
+		value := protoreflect.ValueOfMessage(x.MaxCoinIn.ProtoReflect())
+		if !f(fd_MsgSwapExactOut_max_coin_in, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgSwapExactOut) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		return x.Sender != ""
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		return x.CoinOut != nil
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		return x.MaxCoinIn != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOut) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		x.Sender = ""
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		x.CoinOut = nil
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		x.MaxCoinIn = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgSwapExactOut) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		value := x.Sender
+		return protoreflect.ValueOfString(value)
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		value := x.CoinOut
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		value := x.MaxCoinIn
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOut) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		x.Sender = value.Interface().(string)
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		x.CoinOut = value.Message().Interface().(*v1beta1.Coin)
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		x.MaxCoinIn = value.Message().Interface().(*v1beta1.Coin)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOut) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		if x.CoinOut == nil {
+			x.CoinOut = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.CoinOut.ProtoReflect())
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		if x.MaxCoinIn == nil {
+			x.MaxCoinIn = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.MaxCoinIn.ProtoReflect())
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		panic(fmt.Errorf("field sender of message simapp.amm.v1beta1.MsgSwapExactOut is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgSwapExactOut) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOut.sender":
+		return protoreflect.ValueOfString("")
+	case "simapp.amm.v1beta1.MsgSwapExactOut.coin_out":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOut"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOut does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgSwapExactOut) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in simapp.amm.v1beta1.MsgSwapExactOut", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgSwapExactOut) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOut) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgSwapExactOut) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgSwapExactOut) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgSwapExactOut)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Sender)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.CoinOut != nil {
+			l = options.Size(x.CoinOut)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.MaxCoinIn != nil {
+			l = options.Size(x.MaxCoinIn)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgSwapExactOut)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.CoinOut != nil {
+			encoded, err := options.Marshal(x.CoinOut)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if x.MaxCoinIn != nil {
+			encoded, err := options.Marshal(x.MaxCoinIn)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Sender) > 0 {
+			i -= len(x.Sender)
+			copy(dAtA[i:], x.Sender)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Sender)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgSwapExactOut)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSwapExactOut: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSwapExactOut: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Sender = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinOut", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.CoinOut == nil {
+					x.CoinOut = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.CoinOut); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MaxCoinIn", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.MaxCoinIn == nil {
+					x.MaxCoinIn = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.MaxCoinIn); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgSwapExactOutResponse         protoreflect.MessageDescriptor
+	fd_MsgSwapExactOutResponse_coin_in protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_simapp_amm_v1beta1_tx_proto_init()
+	md_MsgSwapExactOutResponse = File_simapp_amm_v1beta1_tx_proto.Messages().ByName("MsgSwapExactOutResponse")
+	fd_MsgSwapExactOutResponse_coin_in = md_MsgSwapExactOutResponse.Fields().ByName("coin_in")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgSwapExactOutResponse)(nil)
+
+type fastReflection_MsgSwapExactOutResponse MsgSwapExactOutResponse
+
+func (x *MsgSwapExactOutResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgSwapExactOutResponse)(x)
+}
+
+func (x *MsgSwapExactOutResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_simapp_amm_v1beta1_tx_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgSwapExactOutResponse_messageType fastReflection_MsgSwapExactOutResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgSwapExactOutResponse_messageType{}
+
+type fastReflection_MsgSwapExactOutResponse_messageType struct{}
+
+func (x fastReflection_MsgSwapExactOutResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgSwapExactOutResponse)(nil)
+}
+func (x fastReflection_MsgSwapExactOutResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgSwapExactOutResponse)
+}
+func (x fastReflection_MsgSwapExactOutResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSwapExactOutResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgSwapExactOutResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgSwapExactOutResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgSwapExactOutResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgSwapExactOutResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgSwapExactOutResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgSwapExactOutResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgSwapExactOutResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgSwapExactOutResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgSwapExactOutResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.CoinIn != nil {
+		value := protoreflect.ValueOfMessage(x.CoinIn.ProtoReflect())
+		if !f(fd_MsgSwapExactOutResponse_coin_in, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgSwapExactOutResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		return x.CoinIn != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOutResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		x.CoinIn = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgSwapExactOutResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		value := x.CoinIn
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOutResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		x.CoinIn = value.Message().Interface().(*v1beta1.Coin)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOutResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		if x.CoinIn == nil {
+			x.CoinIn = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.CoinIn.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgSwapExactOutResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: simapp.amm.v1beta1.MsgSwapExactOutResponse"))
+		}
+		panic(fmt.Errorf("message simapp.amm.v1beta1.MsgSwapExactOutResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgSwapExactOutResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in simapp.amm.v1beta1.MsgSwapExactOutResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgSwapExactOutResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgSwapExactOutResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgSwapExactOutResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgSwapExactOutResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgSwapExactOutResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.CoinIn != nil {
+			l = options.Size(x.CoinIn)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgSwapExactOutResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.CoinIn != nil {
+			encoded, err := options.Marshal(x.CoinIn)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgSwapExactOutResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSwapExactOutResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgSwapExactOutResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinIn", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.CoinIn == nil {
+					x.CoinIn = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.CoinIn); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -3270,88 +4284,198 @@ func (x *MsgSwapExactInResponse) GetCoinOut() *v1beta1.Coin {
 	return nil
 }
 
+type MsgSwapExactOut struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Sender    string        `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
+	CoinOut   *v1beta1.Coin `protobuf:"bytes,3,opt,name=coin_out,json=coinOut,proto3" json:"coin_out,omitempty"`
+	MaxCoinIn *v1beta1.Coin `protobuf:"bytes,2,opt,name=max_coin_in,json=maxCoinIn,proto3" json:"max_coin_in,omitempty"`
+}
+
+func (x *MsgSwapExactOut) Reset() {
+	*x = MsgSwapExactOut{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_simapp_amm_v1beta1_tx_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgSwapExactOut) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgSwapExactOut) ProtoMessage() {}
+
+// Deprecated: Use MsgSwapExactOut.ProtoReflect.Descriptor instead.
+func (*MsgSwapExactOut) Descriptor() ([]byte, []int) {
+	return file_simapp_amm_v1beta1_tx_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MsgSwapExactOut) GetSender() string {
+	if x != nil {
+		return x.Sender
+	}
+	return ""
+}
+
+func (x *MsgSwapExactOut) GetCoinOut() *v1beta1.Coin {
+	if x != nil {
+		return x.CoinOut
+	}
+	return nil
+}
+
+func (x *MsgSwapExactOut) GetMaxCoinIn() *v1beta1.Coin {
+	if x != nil {
+		return x.MaxCoinIn
+	}
+	return nil
+}
+
+type MsgSwapExactOutResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CoinIn *v1beta1.Coin `protobuf:"bytes,1,opt,name=coin_in,json=coinIn,proto3" json:"coin_in,omitempty"`
+}
+
+func (x *MsgSwapExactOutResponse) Reset() {
+	*x = MsgSwapExactOutResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_simapp_amm_v1beta1_tx_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgSwapExactOutResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgSwapExactOutResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgSwapExactOutResponse.ProtoReflect.Descriptor instead.
+func (*MsgSwapExactOutResponse) Descriptor() ([]byte, []int) {
+	return file_simapp_amm_v1beta1_tx_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *MsgSwapExactOutResponse) GetCoinIn() *v1beta1.Coin {
+	if x != nil {
+		return x.CoinIn
+	}
+	return nil
+}
+
 var File_simapp_amm_v1beta1_tx_proto protoreflect.FileDescriptor
 
 var file_simapp_amm_v1beta1_tx_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2f, 0x61, 0x6d, 0x6d, 0x2f, 0x76, 0x31, 0x62,
 	0x65, 0x74, 0x61, 0x31, 0x2f, 0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x12, 0x73,
 	0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31,
-	0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb3, 0x01, 0x0a, 0x0f,
-	0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12,
-	0x30, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65,
-	0x72, 0x12, 0x61, 0x0a, 0x05, 0x63, 0x6f, 0x69, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b,
+	0x31, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x73, 0x67, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x11, 0x61, 0x6d, 0x69,
+	0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb3,
+	0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69,
+	0x74, 0x79, 0x12, 0x30, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x06, 0x73, 0x65,
+	0x6e, 0x64, 0x65, 0x72, 0x12, 0x61, 0x0a, 0x05, 0x63, 0x6f, 0x69, 0x6e, 0x73, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x30,
+	0xc8, 0xde, 0x1f, 0x00, 0xaa, 0xdf, 0x1f, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x73,
+	0x52, 0x05, 0x63, 0x6f, 0x69, 0x6e, 0x73, 0x3a, 0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65,
+	0x6e, 0x64, 0x65, 0x72, 0x22, 0x5d, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69,
+	0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x42, 0x0a, 0x0c, 0x6d, 0x69, 0x6e, 0x74, 0x65, 0x64, 0x5f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
+	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e,
+	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x6d, 0x69, 0x6e, 0x74, 0x65, 0x64, 0x53, 0x68,
+	0x61, 0x72, 0x65, 0x22, 0x70, 0x0a, 0x12, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x6e,
+	0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65,
+	0x72, 0x12, 0x35, 0x0a, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x30, 0xc8, 0xde, 0x1f,
-	0x00, 0xaa, 0xdf, 0x1f, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d, 0x73, 0x64,
-	0x6b, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x52, 0x05, 0x63,
-	0x6f, 0x69, 0x6e, 0x73, 0x3a, 0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65,
-	0x72, 0x22, 0x5d, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69,
-	0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x0c,
-	0x6d, 0x69, 0x6e, 0x74, 0x65, 0x64, 0x5f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65,
-	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x0b, 0x6d, 0x69, 0x6e, 0x74, 0x65, 0x64, 0x53, 0x68, 0x61, 0x72, 0x65,
-	0x22, 0x70, 0x0a, 0x12, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71,
-	0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x12, 0x35,
-	0x0a, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f,
+	0x00, 0x52, 0x05, 0x73, 0x68, 0x61, 0x72, 0x65, 0x3a, 0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73,
+	0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0x92, 0x01, 0x0a, 0x1a, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d,
+	0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x0f, 0x77, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77,
+	0x6e, 0x5f, 0x63, 0x6f, 0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e,
 	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x05,
-	0x73, 0x68, 0x61, 0x72, 0x65, 0x3a, 0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64,
-	0x65, 0x72, 0x22, 0x92, 0x01, 0x0a, 0x1a, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
-	0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x74, 0x0a, 0x0f, 0x77, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77, 0x6e, 0x5f, 0x63,
-	0x6f, 0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73,
-	0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xaa, 0xdf, 0x1f, 0x28, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x74, 0x79, 0x70, 0x65,
-	0x73, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x52, 0x0e, 0x77, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61,
-	0x77, 0x6e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x22, 0xb2, 0x01, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x53,
-	0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65,
-	0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64,
-	0x65, 0x72, 0x12, 0x38, 0x0a, 0x07, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x69, 0x6e, 0x18, 0x02, 0x20,
+	0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xaa, 0xdf,
+	0x1f, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x52, 0x0e, 0x77, 0x69, 0x74, 0x68,
+	0x64, 0x72, 0x61, 0x77, 0x6e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x22, 0xb2, 0x01, 0x0a, 0x0e, 0x4d,
+	0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x12, 0x16, 0x0a,
+	0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73,
+	0x65, 0x6e, 0x64, 0x65, 0x72, 0x12, 0x38, 0x0a, 0x07, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x69, 0x6e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69,
+	0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x63, 0x6f, 0x69, 0x6e, 0x49, 0x6e, 0x12,
+	0x41, 0x0a, 0x0c, 0x6d, 0x69, 0x6e, 0x5f, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x6f, 0x75, 0x74, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
+	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e,
+	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0a, 0x6d, 0x69, 0x6e, 0x43, 0x6f, 0x69, 0x6e, 0x4f,
+	0x75, 0x74, 0x3a, 0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22,
+	0x54, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49,
+	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x08, 0x63, 0x6f, 0x69,
+	0x6e, 0x5f, 0x6f, 0x75, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
+	0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x07, 0x63, 0x6f,
+	0x69, 0x6e, 0x4f, 0x75, 0x74, 0x22, 0xb3, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x53, 0x77, 0x61,
+	0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x4f, 0x75, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x6e,
+	0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65,
+	0x72, 0x12, 0x3a, 0x0a, 0x08, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x6f, 0x75, 0x74, 0x18, 0x03, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73,
 	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04,
-	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x63, 0x6f, 0x69, 0x6e, 0x49, 0x6e, 0x12, 0x41, 0x0a, 0x0c,
-	0x6d, 0x69, 0x6e, 0x5f, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x6f, 0x75, 0x74, 0x18, 0x03, 0x20, 0x01,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x07, 0x63, 0x6f, 0x69, 0x6e, 0x4f, 0x75, 0x74, 0x12, 0x3f, 0x0a,
+	0x0b, 0x6d, 0x61, 0x78, 0x5f, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65,
 	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x0a, 0x6d, 0x69, 0x6e, 0x43, 0x6f, 0x69, 0x6e, 0x4f, 0x75, 0x74, 0x3a,
-	0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0x54, 0x0a, 0x16,
-	0x4d, 0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x08, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x6f,
-	0x75, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
-	0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43,
-	0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x07, 0x63, 0x6f, 0x69, 0x6e, 0x4f,
-	0x75, 0x74, 0x32, 0xb8, 0x02, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x60, 0x0a, 0x0c, 0x41, 0x64,
-	0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12, 0x23, 0x2e, 0x73, 0x69, 0x6d,
-	0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
-	0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x1a,
-	0x2b, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69,
-	0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x0f,
-	0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12,
-	0x26, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69,
-	0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x1a, 0x2e, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70,
-	0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0b, 0x53, 0x77, 0x61, 0x70, 0x45,
-	0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x12, 0x22, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e,
-	0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53,
-	0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x1a, 0x2a, 0x2e, 0x73, 0x69, 0x6d,
-	0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
-	0x4d, 0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x52, 0x65,
+	0xde, 0x1f, 0x00, 0x52, 0x09, 0x6d, 0x61, 0x78, 0x43, 0x6f, 0x69, 0x6e, 0x49, 0x6e, 0x3a, 0x0b,
+	0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0x53, 0x0a, 0x17, 0x4d,
+	0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x4f, 0x75, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x07, 0x63, 0x6f, 0x69, 0x6e, 0x5f, 0x69,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f,
+	0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x63, 0x6f, 0x69, 0x6e, 0x49, 0x6e,
+	0x32, 0x9a, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x60, 0x0a, 0x0c, 0x41, 0x64, 0x64, 0x4c,
+	0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12, 0x23, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70,
+	0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73,
+	0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x1a, 0x2b, 0x2e,
+	0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69,
+	0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x0f, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x12, 0x26, 0x2e,
+	0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75,
+	0x69, 0x64, 0x69, 0x74, 0x79, 0x1a, 0x2e, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61,
+	0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x4c, 0x69, 0x71, 0x75, 0x69, 0x64, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0b, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61,
+	0x63, 0x74, 0x49, 0x6e, 0x12, 0x22, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d,
+	0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x77, 0x61,
+	0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x1a, 0x2a, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70,
+	0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73,
+	0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0c, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63,
+	0x74, 0x4f, 0x75, 0x74, 0x12, 0x23, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d,
+	0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x77, 0x61,
+	0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x4f, 0x75, 0x74, 0x1a, 0x2b, 0x2e, 0x73, 0x69, 0x6d, 0x61,
+	0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d,
+	0x73, 0x67, 0x53, 0x77, 0x61, 0x70, 0x45, 0x78, 0x61, 0x63, 0x74, 0x4f, 0x75, 0x74, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0xbb, 0x01,
 	0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x6d, 0x61, 0x70, 0x70, 0x2e, 0x61, 0x6d, 0x6d,
 	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74,
@@ -3380,7 +4504,7 @@ func file_simapp_amm_v1beta1_tx_proto_rawDescGZIP() []byte {
 	return file_simapp_amm_v1beta1_tx_proto_rawDescData
 }
 
-var file_simapp_amm_v1beta1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_simapp_amm_v1beta1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_simapp_amm_v1beta1_tx_proto_goTypes = []interface{}{
 	(*MsgAddLiquidity)(nil),            // 0: simapp.amm.v1beta1.MsgAddLiquidity
 	(*MsgAddLiquidityResponse)(nil),    // 1: simapp.amm.v1beta1.MsgAddLiquidityResponse
@@ -3388,27 +4512,34 @@ var file_simapp_amm_v1beta1_tx_proto_goTypes = []interface{}{
 	(*MsgRemoveLiquidityResponse)(nil), // 3: simapp.amm.v1beta1.MsgRemoveLiquidityResponse
 	(*MsgSwapExactIn)(nil),             // 4: simapp.amm.v1beta1.MsgSwapExactIn
 	(*MsgSwapExactInResponse)(nil),     // 5: simapp.amm.v1beta1.MsgSwapExactInResponse
-	(*v1beta1.Coin)(nil),               // 6: cosmos.base.v1beta1.Coin
+	(*MsgSwapExactOut)(nil),            // 6: simapp.amm.v1beta1.MsgSwapExactOut
+	(*MsgSwapExactOutResponse)(nil),    // 7: simapp.amm.v1beta1.MsgSwapExactOutResponse
+	(*v1beta1.Coin)(nil),               // 8: cosmos.base.v1beta1.Coin
 }
 var file_simapp_amm_v1beta1_tx_proto_depIdxs = []int32{
-	6,  // 0: simapp.amm.v1beta1.MsgAddLiquidity.coins:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 1: simapp.amm.v1beta1.MsgAddLiquidityResponse.minted_share:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 2: simapp.amm.v1beta1.MsgRemoveLiquidity.share:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 3: simapp.amm.v1beta1.MsgRemoveLiquidityResponse.withdrawn_coins:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 4: simapp.amm.v1beta1.MsgSwapExactIn.coin_in:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 5: simapp.amm.v1beta1.MsgSwapExactIn.min_coin_out:type_name -> cosmos.base.v1beta1.Coin
-	6,  // 6: simapp.amm.v1beta1.MsgSwapExactInResponse.coin_out:type_name -> cosmos.base.v1beta1.Coin
-	0,  // 7: simapp.amm.v1beta1.Msg.AddLiquidity:input_type -> simapp.amm.v1beta1.MsgAddLiquidity
-	2,  // 8: simapp.amm.v1beta1.Msg.RemoveLiquidity:input_type -> simapp.amm.v1beta1.MsgRemoveLiquidity
-	4,  // 9: simapp.amm.v1beta1.Msg.SwapExactIn:input_type -> simapp.amm.v1beta1.MsgSwapExactIn
-	1,  // 10: simapp.amm.v1beta1.Msg.AddLiquidity:output_type -> simapp.amm.v1beta1.MsgAddLiquidityResponse
-	3,  // 11: simapp.amm.v1beta1.Msg.RemoveLiquidity:output_type -> simapp.amm.v1beta1.MsgRemoveLiquidityResponse
-	5,  // 12: simapp.amm.v1beta1.Msg.SwapExactIn:output_type -> simapp.amm.v1beta1.MsgSwapExactInResponse
-	10, // [10:13] is the sub-list for method output_type
-	7,  // [7:10] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	8,  // 0: simapp.amm.v1beta1.MsgAddLiquidity.coins:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 1: simapp.amm.v1beta1.MsgAddLiquidityResponse.minted_share:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 2: simapp.amm.v1beta1.MsgRemoveLiquidity.share:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 3: simapp.amm.v1beta1.MsgRemoveLiquidityResponse.withdrawn_coins:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 4: simapp.amm.v1beta1.MsgSwapExactIn.coin_in:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 5: simapp.amm.v1beta1.MsgSwapExactIn.min_coin_out:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 6: simapp.amm.v1beta1.MsgSwapExactInResponse.coin_out:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 7: simapp.amm.v1beta1.MsgSwapExactOut.coin_out:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 8: simapp.amm.v1beta1.MsgSwapExactOut.max_coin_in:type_name -> cosmos.base.v1beta1.Coin
+	8,  // 9: simapp.amm.v1beta1.MsgSwapExactOutResponse.coin_in:type_name -> cosmos.base.v1beta1.Coin
+	0,  // 10: simapp.amm.v1beta1.Msg.AddLiquidity:input_type -> simapp.amm.v1beta1.MsgAddLiquidity
+	2,  // 11: simapp.amm.v1beta1.Msg.RemoveLiquidity:input_type -> simapp.amm.v1beta1.MsgRemoveLiquidity
+	4,  // 12: simapp.amm.v1beta1.Msg.SwapExactIn:input_type -> simapp.amm.v1beta1.MsgSwapExactIn
+	6,  // 13: simapp.amm.v1beta1.Msg.SwapExactOut:input_type -> simapp.amm.v1beta1.MsgSwapExactOut
+	1,  // 14: simapp.amm.v1beta1.Msg.AddLiquidity:output_type -> simapp.amm.v1beta1.MsgAddLiquidityResponse
+	3,  // 15: simapp.amm.v1beta1.Msg.RemoveLiquidity:output_type -> simapp.amm.v1beta1.MsgRemoveLiquidityResponse
+	5,  // 16: simapp.amm.v1beta1.Msg.SwapExactIn:output_type -> simapp.amm.v1beta1.MsgSwapExactInResponse
+	7,  // 17: simapp.amm.v1beta1.Msg.SwapExactOut:output_type -> simapp.amm.v1beta1.MsgSwapExactOutResponse
+	14, // [14:18] is the sub-list for method output_type
+	10, // [10:14] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_simapp_amm_v1beta1_tx_proto_init() }
@@ -3489,6 +4620,30 @@ func file_simapp_amm_v1beta1_tx_proto_init() {
 				return nil
 			}
 		}
+		file_simapp_amm_v1beta1_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgSwapExactOut); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_simapp_amm_v1beta1_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgSwapExactOutResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -3496,7 +4651,7 @@ func file_simapp_amm_v1beta1_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_simapp_amm_v1beta1_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
