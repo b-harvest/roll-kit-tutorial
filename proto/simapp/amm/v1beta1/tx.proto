@@ -11,6 +11,7 @@ option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
 service Msg {
   option (cosmos.msg.v1.service) = true;
   rpc AddLiquidity(MsgAddLiquidity) returns (MsgAddLiquidityResponse);
+  rpc RemoveLiquidity(MsgRemoveLiquidity) returns (MsgRemoveLiquidityResponse);
 }
 
 message MsgAddLiquidity {
@@ -25,4 +26,18 @@ message MsgAddLiquidity {
 
 message MsgAddLiquidityResponse {
   cosmos.base.v1beta1.Coin minted_share = 1 [ (gogoproto.nullable) = false ];
+}
+
+message MsgRemoveLiquidity {
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1;
+  cosmos.base.v1beta1.Coin share = 2 [ (gogoproto.nullable) = false ];
+}
+
+message MsgRemoveLiquidityResponse {
+  repeated cosmos.base.v1beta1.Coin withdrawn_coins = 1 [
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins",
+    (gogoproto.nullable) = false
+  ];
 }
