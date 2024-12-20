@@ -22,9 +22,14 @@ func init() {
 // RegisterLegacyAminoCodec registers concrete types on the codec.
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgAddLiquidity{}, "simapp/MsgAddLiquidity", nil)
+	cdc.RegisterConcrete(&MsgRemoveLiquidity{}, "simapp/MsgRemoveLiquidity", nil)
 }
 
 func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
-	registry.RegisterImplementations((*sdk.Msg)(nil), &MsgAddLiquidity{})
+	registry.RegisterImplementations(
+		(*sdk.Msg)(nil),
+		&MsgAddLiquidity{},
+		&MsgRemoveLiquidity{},
+	)
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }
