@@ -43,3 +43,22 @@ func (m msgServer) AddLiquidity(ctx context.Context, msg *types.MsgAddLiquidity)
 		MintedShare: mintedShare,
 	}, nil
 }
+
+func (m msgServer) RemoveLiquidity(ctx context.Context, msg *types.MsgRemoveLiquidity) (*types.MsgRemoveLiquidityResponse, error) {
+	if _, err := sdk.AccAddressFromBech32(msg.Sender); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid sender address: %v", err)
+	}
+	if _, err := types.ParseShareDenom(msg.Share.Denom); err != nil {
+		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, err.Error())
+	}
+
+	withdrawnCoins, err := m.Keeper.RemoveLiquidity(
+		ctx, sdk.MustAccAddressFromBech32(msg.Sender), msg.Share,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return &types.MsgRemoveLiquidityResponse{
+		WithdrawnCoins: withdrawnCoins,
+	}, nil
+}
