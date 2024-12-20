@@ -20,8 +20,10 @@ type Keeper struct {
 	bankKeeper types.BankKeeper
 
 	// State
-	Schema collections.Schema
-	Params collections.Item[types.Params]
+	Schema             collections.Schema
+	NextPairIDSequence collections.Sequence
+	Pairs              *collections.IndexedMap[collections.Pair[string, string], types.Pair, types.PairIndexes]
+	Params             collections.Item[types.Params]
 }
 
 func NewKeeper(
@@ -33,9 +35,14 @@ func NewKeeper(
 	sb := collections.NewSchemaBuilder(storeService)
 
 	k := Keeper{
-		cdc:        cdc,
-		bankKeeper: bankKeeper,
-		Params:     collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
+		cdc:                cdc,
+		bankKeeper:         bankKeeper,
+		NextPairIDSequence: collections.NewSequence(sb, types.NextPairIDSequenceKey, "next_pair_id"),
+		Pairs: collections.NewIndexedMap(sb, types.PairPrefix, "pairs",
+			collections.PairKeyCodec(collections.StringKey, collections.StringKey), codec.CollValue[types.Pair](cdc),
+			types.NewPairIndexes(sb),
+		),
+		Params: collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
 	}
 	schema, err := sb.Build()
 	if err != nil {
