@@ -82,6 +82,52 @@ func (k Keeper) AddLiquidity(ctx context.Context, fromAddr sdk.AccAddress, coins
 	return mintedShare, nil
 }
 
+func (k Keeper) RemoveLiquidity(ctx context.Context, fromAddr sdk.AccAddress, share sdk.Coin) (withdrawnCoins sdk.Coins, err error) {
+	var pairID uint64
+	pairID, err = types.ParseShareDenom(share.Denom)
+	if err != nil {
+		return
+	}
+
+	pair, err := k.GetPairById(ctx, pairID)
+	if err != nil {
+		return
+	}
+
+	reserveAddr := types.PairReserveAddress(pair)
+	reserveBalances := k.bankKeeper.SpendableCoins(ctx, reserveAddr)
+	rx := reserveBalances.AmountOf(pair.Denom0)
+	ry := reserveBalances.AmountOf(pair.Denom1)
+	totalShare := k.bankKeeper.GetSupply(ctx, share.Denom).Amount
+
+	var wx, wy math.Int
+	if share.Amount.Equal(totalShare) {
+		wx = rx
+		wy = ry
+		k.Pairs.Remove(ctx, collections.Join(pair.Denom0, pair.Denom1))
+	} else {
+		wx = rx.Mul(share.Amount).Quo(totalShare)
+		wy = ry.Mul(share.Amount).Quo(totalShare)
+	}
+	if !wx.IsPositive() && !wy.IsPositive() {
+		err = errorsmod.Wrap(types.ErrInsufficientLiquidity, "too small share to remove")
+		return
+	}
+
+	if err = k.bankKeeper.SendCoinsFromAccountToModule(
+		ctx, fromAddr, types.ModuleName, sdk.NewCoins(share)); err != nil {
+		return
+	}
+	if err = k.bankKeeper.BurnCoins(ctx, types.ModuleName, sdk.NewCoins(share)); err != nil {
+		return
+	}
+	withdrawnCoins = sdk.NewCoins(sdk.NewCoin(pair.Denom0, wx), sdk.NewCoin(pair.Denom1, wy))
+	if err = k.bankKeeper.SendCoins(ctx, reserveAddr, fromAddr, withdrawnCoins); err != nil {
+		return
+	}
+	return withdrawnCoins, nil
+}
+
 func (k Keeper) GetPairByDenoms(ctx context.Context, denomA, denomB string) (pair types.Pair, err error) {
 	denom0, denom1 := types.SortDenoms(denomA, denomB)
 	return k.Pairs.Get(ctx, collections.Join(denom0, denom1))
