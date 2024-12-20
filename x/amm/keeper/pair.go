@@ -6,8 +6,10 @@ import (
 	"cosmossdk.io/collections"
 	errorsmod "cosmossdk.io/errors"
 	"cosmossdk.io/math"
-	"github.com/b-harvest/roll-kit-tutorial/x/amm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+
+	"github.com/b-harvest/roll-kit-tutorial/x/amm/types"
 )
 
 func (k Keeper) AddLiquidity(ctx context.Context, fromAddr sdk.AccAddress, coins sdk.Coins) (mintedShare sdk.Coin, err error) {
@@ -170,6 +172,51 @@ func (k Keeper) SwapExactIn(ctx context.Context, fromAddr sdk.AccAddress, coinIn
 		return
 	}
 	return coinOut, nil
+}
+
+func (k Keeper) SwapExactOut(ctx context.Context, fromAddr sdk.AccAddress, coinOut, maxCoinIn sdk.Coin) (coinIn sdk.Coin, err error) {
+	pair, err := k.GetPairByDenoms(ctx, maxCoinIn.Denom, coinOut.Denom)
+	if err != nil {
+		err = errorsmod.Wrap(sdkerrors.ErrNotFound, "pair not found")
+		return
+	}
+
+	reserveAddr := types.PairReserveAddress(pair)
+	reserveBalances := k.bankKeeper.SpendableCoins(ctx, reserveAddr)
+	rx := reserveBalances.AmountOf(pair.Denom0)
+	ry := reserveBalances.AmountOf(pair.Denom1)
+
+	params, err := k.Params.Get(ctx)
+	if err != nil {
+		panic(err)
+	}
+	feeRate := params.FeeRate
+
+	var reserveIn, reserveOut math.Int
+
+	if coinOut.Denom == pair.Denom1 { // x to y
+		reserveIn, reserveOut = rx, ry
+		coinIn.Denom = pair.Denom0
+	} else { // y to x
+		reserveIn, reserveOut = ry, rx
+		coinIn.Denom = pair.Denom1
+	}
+	coinIn.Amount = math.LegacyNewDecFromInt(reserveIn.Mul(coinOut.Amount)).
+		QuoInt(reserveOut.Sub(coinOut.Amount)).
+		Mul(math.LegacyOneDec().Add(feeRate)).Ceil().TruncateInt()
+	if coinIn.Amount.GT(maxCoinIn.Amount) {
+		err = errorsmod.Wrapf(
+			types.ErrBigInCoin, "%s is bigger than %s", coinIn.Amount, maxCoinIn.Amount)
+		return
+	}
+
+	if err = k.bankKeeper.SendCoins(ctx, fromAddr, reserveAddr, sdk.NewCoins(coinIn)); err != nil {
+		return
+	}
+	if err = k.bankKeeper.SendCoins(ctx, reserveAddr, fromAddr, sdk.NewCoins(coinOut)); err != nil {
+		return
+	}
+	return coinIn, nil
 }
 
 func (k Keeper) GetPairByDenoms(ctx context.Context, denomA, denomB string) (pair types.Pair, err error) {
