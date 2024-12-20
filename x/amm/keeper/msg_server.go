@@ -83,3 +83,24 @@ func (m msgServer) SwapExactIn(ctx context.Context, msg *types.MsgSwapExactIn) (
 		CoinOut: coinOut,
 	}, nil
 }
+
+func (k msgServer) SwapExactOut(ctx context.Context, msg *types.MsgSwapExactOut) (*types.MsgSwapExactOutResponse, error) {
+	if _, err := sdk.AccAddressFromBech32(msg.Sender); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid sender address: %v", err)
+	}
+	if err := msg.CoinOut.Validate(); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidCoins, "invalid coin out: %v", err)
+	}
+	if err := msg.MaxCoinIn.Validate(); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidCoins, "invalid max coin in: %v", err)
+	}
+
+	coinIn, err := k.Keeper.SwapExactOut(
+		ctx, sdk.MustAccAddressFromBech32(msg.Sender), msg.CoinOut, msg.MaxCoinIn)
+	if err != nil {
+		return nil, err
+	}
+	return &types.MsgSwapExactOutResponse{
+		CoinIn: coinIn,
+	}, nil
+}
