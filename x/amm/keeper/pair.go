@@ -128,6 +128,50 @@ func (k Keeper) RemoveLiquidity(ctx context.Context, fromAddr sdk.AccAddress, sh
 	return withdrawnCoins, nil
 }
 
+func (k Keeper) SwapExactIn(ctx sdk.Context, fromAddr sdk.AccAddress, coinIn, minCoinOut sdk.Coin) (coinOut sdk.Coin, err error) {
+	pair, err := k.GetPairByDenoms(ctx, coinIn.Denom, minCoinOut.Denom)
+	if err != nil {
+		err = errorsmod.Wrap(err, "pair not found")
+		return
+	}
+
+	reserveAddr := types.PairReserveAddress(pair)
+	reserveBalances := k.bankKeeper.SpendableCoins(ctx, reserveAddr)
+	rx := reserveBalances.AmountOf(pair.Denom0)
+	ry := reserveBalances.AmountOf(pair.Denom1)
+
+	params, err := k.Params.Get(ctx)
+	if err != nil {
+		panic(err)
+	}
+	feeRate := params.FeeRate
+
+	var reserveIn, reserveOut math.Int
+	amtInWithoutFee := math.LegacyNewDecFromInt(coinIn.Amount).
+		MulTruncate(math.LegacyOneDec().Sub(feeRate)).TruncateInt()
+	if coinIn.Denom == pair.Denom0 { // x to y
+		reserveIn, reserveOut = rx, ry
+		coinOut.Denom = pair.Denom1
+	} else { // y to x
+		reserveIn, reserveOut = ry, rx
+		coinOut.Denom = pair.Denom0
+	}
+	coinOut.Amount = reserveOut.Mul(amtInWithoutFee).Quo(reserveIn.Add(amtInWithoutFee))
+	if coinOut.Amount.LT(minCoinOut.Amount) {
+		err = errorsmod.Wrapf(
+			types.ErrSmallOutCoin, "%s is smaller than %s", coinOut.Amount, minCoinOut.Amount)
+		return
+	}
+
+	if err = k.bankKeeper.SendCoins(ctx, fromAddr, reserveAddr, sdk.NewCoins(coinIn)); err != nil {
+		return
+	}
+	if err = k.bankKeeper.SendCoins(ctx, reserveAddr, fromAddr, sdk.NewCoins(coinOut)); err != nil {
+		return
+	}
+	return coinOut, nil
+}
+
 func (k Keeper) GetPairByDenoms(ctx context.Context, denomA, denomB string) (pair types.Pair, err error) {
 	denom0, denom1 := types.SortDenoms(denomA, denomB)
 	return k.Pairs.Get(ctx, collections.Join(denom0, denom1))
