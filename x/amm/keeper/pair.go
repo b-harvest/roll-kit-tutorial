@@ -128,7 +128,7 @@ func (k Keeper) RemoveLiquidity(ctx context.Context, fromAddr sdk.AccAddress, sh
 	return withdrawnCoins, nil
 }
 
-func (k Keeper) SwapExactIn(ctx sdk.Context, fromAddr sdk.AccAddress, coinIn, minCoinOut sdk.Coin) (coinOut sdk.Coin, err error) {
+func (k Keeper) SwapExactIn(ctx context.Context, fromAddr sdk.AccAddress, coinIn, minCoinOut sdk.Coin) (coinOut sdk.Coin, err error) {
 	pair, err := k.GetPairByDenoms(ctx, coinIn.Denom, minCoinOut.Denom)
 	if err != nil {
 		err = errorsmod.Wrap(err, "pair not found")
