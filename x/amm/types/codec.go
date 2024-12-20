@@ -23,6 +23,7 @@ func init() {
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgAddLiquidity{}, "simapp/MsgAddLiquidity", nil)
 	cdc.RegisterConcrete(&MsgRemoveLiquidity{}, "simapp/MsgRemoveLiquidity", nil)
+	cdc.RegisterConcrete(&MsgSwapExactIn{}, "simapp/MsgSwapExactIn", nil)
 }
 
 func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
@@ -30,6 +31,7 @@ func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
 		(*sdk.Msg)(nil),
 		&MsgAddLiquidity{},
 		&MsgRemoveLiquidity{},
+		&MsgSwapExactIn{},
 	)
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }
