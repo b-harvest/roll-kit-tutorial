@@ -8,3 +8,10 @@ func NewMsgAddLiquidity(sender sdk.AccAddress, coins sdk.Coins) *MsgAddLiquidity
 		Coins:  coins,
 	}
 }
+
+func NewMsgRemoveLiquidity(sender sdk.AccAddress, share sdk.Coin) *MsgRemoveLiquidity {
+	return &MsgRemoveLiquidity{
+		Sender: sender.String(),
+		Share:  share,
+	}
+}
