@@ -23,3 +23,11 @@ func NewMsgSwapExactIn(sender sdk.AccAddress, coinIn, minCoinOut sdk.Coin) *MsgS
 		MinCoinOut: minCoinOut,
 	}
 }
+
+func NewMsgSwapExactOut(sender sdk.AccAddress, coinOut, maxCoinIn sdk.Coin) *MsgSwapExactOut {
+	return &MsgSwapExactOut{
+		Sender:    sender.String(),
+		CoinOut:   coinOut,
+		MaxCoinIn: maxCoinIn,
+	}
+}
