@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	Msg_AddLiquidity_FullMethodName    = "/simapp.amm.v1beta1.Msg/AddLiquidity"
 	Msg_RemoveLiquidity_FullMethodName = "/simapp.amm.v1beta1.Msg/RemoveLiquidity"
+	Msg_SwapExactIn_FullMethodName     = "/simapp.amm.v1beta1.Msg/SwapExactIn"
 )
 
 // MsgClient is the client API for Msg service.
@@ -29,6 +30,7 @@ const (
 type MsgClient interface {
 	AddLiquidity(ctx context.Context, in *MsgAddLiquidity, opts ...grpc.CallOption) (*MsgAddLiquidityResponse, error)
 	RemoveLiquidity(ctx context.Context, in *MsgRemoveLiquidity, opts ...grpc.CallOption) (*MsgRemoveLiquidityResponse, error)
+	SwapExactIn(ctx context.Context, in *MsgSwapExactIn, opts ...grpc.CallOption) (*MsgSwapExactInResponse, error)
 }
 
 type msgClient struct {
@@ -57,12 +59,22 @@ func (c *msgClient) RemoveLiquidity(ctx context.Context, in *MsgRemoveLiquidity,
 	return out, nil
 }
 
+func (c *msgClient) SwapExactIn(ctx context.Context, in *MsgSwapExactIn, opts ...grpc.CallOption) (*MsgSwapExactInResponse, error) {
+	out := new(MsgSwapExactInResponse)
+	err := c.cc.Invoke(ctx, Msg_SwapExactIn_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
 type MsgServer interface {
 	AddLiquidity(context.Context, *MsgAddLiquidity) (*MsgAddLiquidityResponse, error)
 	RemoveLiquidity(context.Context, *MsgRemoveLiquidity) (*MsgRemoveLiquidityResponse, error)
+	SwapExactIn(context.Context, *MsgSwapExactIn) (*MsgSwapExactInResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -75,6 +87,9 @@ func (UnimplementedMsgServer) AddLiquidity(context.Context, *MsgAddLiquidity) (*
 }
 func (UnimplementedMsgServer) RemoveLiquidity(context.Context, *MsgRemoveLiquidity) (*MsgRemoveLiquidityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveLiquidity not implemented")
+}
+func (UnimplementedMsgServer) SwapExactIn(context.Context, *MsgSwapExactIn) (*MsgSwapExactInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SwapExactIn not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -125,6 +140,24 @@ func _Msg_RemoveLiquidity_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SwapExactIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSwapExactIn)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SwapExactIn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_SwapExactIn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SwapExactIn(ctx, req.(*MsgSwapExactIn))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,6 +172,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveLiquidity",
 			Handler:    _Msg_RemoveLiquidity_Handler,
+		},
+		{
+			MethodName: "SwapExactIn",
+			Handler:    _Msg_SwapExactIn_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

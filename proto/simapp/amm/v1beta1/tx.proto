@@ -12,6 +12,7 @@ service Msg {
   option (cosmos.msg.v1.service) = true;
   rpc AddLiquidity(MsgAddLiquidity) returns (MsgAddLiquidityResponse);
   rpc RemoveLiquidity(MsgRemoveLiquidity) returns (MsgRemoveLiquidityResponse);
+  rpc SwapExactIn(MsgSwapExactIn) returns (MsgSwapExactInResponse);
 }
 
 message MsgAddLiquidity {
@@ -40,4 +41,16 @@ message MsgRemoveLiquidityResponse {
     (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins",
     (gogoproto.nullable) = false
   ];
+}
+
+message MsgSwapExactIn {
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1;
+  cosmos.base.v1beta1.Coin coin_in = 2 [ (gogoproto.nullable) = false ];
+  cosmos.base.v1beta1.Coin min_coin_out = 3 [ (gogoproto.nullable) = false ];
+}
+
+message MsgSwapExactInResponse {
+  cosmos.base.v1beta1.Coin coin_out = 1 [ (gogoproto.nullable) = false ];
 }
