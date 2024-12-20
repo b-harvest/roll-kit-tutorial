@@ -62,3 +62,24 @@ func (m msgServer) RemoveLiquidity(ctx context.Context, msg *types.MsgRemoveLiqu
 		WithdrawnCoins: withdrawnCoins,
 	}, nil
 }
+
+func (m msgServer) SwapExactIn(ctx context.Context, msg *types.MsgSwapExactIn) (*types.MsgSwapExactInResponse, error) {
+	if _, err := sdk.AccAddressFromBech32(msg.Sender); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid sender address: %v", err)
+	}
+	if err := msg.CoinIn.Validate(); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidCoins, "invalid coin in: %v", err)
+	}
+	if err := msg.MinCoinOut.Validate(); err != nil {
+		return nil, errorsmod.Wrapf(sdkerrors.ErrInvalidCoins, "invalid min coin out: %v", err)
+	}
+
+	coinOut, err := m.Keeper.SwapExactIn(
+		ctx, sdk.MustAccAddressFromBech32(msg.Sender), msg.CoinIn, msg.MinCoinOut)
+	if err != nil {
+		return nil, err
+	}
+	return &types.MsgSwapExactInResponse{
+		CoinOut: coinOut,
+	}, nil
+}
