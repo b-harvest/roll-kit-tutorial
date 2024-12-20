@@ -2,8 +2,14 @@ syntax = "proto3";
 package simapp.amm.v1beta1;
 
 import "simapp/amm/v1beta1/params.proto";
+import "simapp/amm/v1beta1/amm.proto";
+
 import "gogoproto/gogo.proto";
 
 option go_package = "github.com/b-harvest/roll-kit-tutorial/x/amm/types";
 
-message GenesisState { Params params = 1 [ (gogoproto.nullable) = false ]; }
+message GenesisState {
+  Params params = 1 [ (gogoproto.nullable) = false ];
+  uint64 pair_sequence = 2;
+  repeated Pair pairs = 3 [ (gogoproto.nullable) = false ];
+}
